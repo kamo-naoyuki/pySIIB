@@ -18,7 +18,8 @@ setup(
     classifiers=[
         "Programming Language :: Python",
     ],
-    packages=find_packages(),
+    packages=find_packages("MI_kraskov/*"),
+    py_modules=['pysiib'],
     install_requires=["cffi>=1.0.0"],
     setup_requires=["cffi>=1.0.0"],
     cffi_modules=[
