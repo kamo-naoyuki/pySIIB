@@ -1,5 +1,6 @@
 # pySIIB: A python implementation of speech intelligibility in bits (SIIB)
 
+SIIB is an intrusive instrumental intelligibility metric.
 This Python implementation of SIIB is ported from the author's matlab codes: https://stevenvankuyk.com/matlab_code/
 
 ## Install
