@@ -18,9 +18,8 @@ setup(
     classifiers=[
         "Programming Language :: Python",
     ],
-    packages=find_packages("MI_kraskov/*"),
-    py_modules=['pysiib'],
-    install_requires=["cffi>=1.0.0"],
+    packages=["", "MI_kraskov"],
+    install_requires=["cffi>=1.0.0", "numpy", "scipy"],
     setup_requires=["cffi>=1.0.0"],
     cffi_modules=[
         "./MI_kraskov/build_MIxnyn.py:ffi",
