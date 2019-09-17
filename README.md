@@ -1,4 +1,4 @@
-# pySIIB: A python implementation of Speech intelligibility in bits (SIIB)
+# pySIIB: A python implementation of speech intelligibility in bits (SIIB)
 
 This Python implementation of SIIB is ported from the author's matlab codes: https://stevenvankuyk.com/matlab_code/
 
