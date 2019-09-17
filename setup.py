@@ -10,10 +10,10 @@ os.chdir(os.path.dirname(sys.argv[0]) or ".")
 setup(
     name="pysiib",
     version="0.0",
-    description="A python implementation of Speech intelligibility in bits (SIIB)",
+    description="A python implementation of speech intelligibility in bits (SIIB)",
     long_description="",
-    url="",
-    author="",
+    url="https://github.com/kamo-naoyuki/pySIIB",
+    author="Naoyuki Kamo",
     author_email="",
     classifiers=[
         "Programming Language :: Python",
