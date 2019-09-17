@@ -5,15 +5,19 @@ This Python implementation of SIIB is ported from the author's matlab codes: htt
 ## Install
 
 ```bash
-python setup.py install
+pip install git+https://github.com/kamo-naoyuki/pySIIB.git
 ```
 
 
 ## Usage
 
 ```python
+import soundfile
 from pysiib import SIIB
-fs = 16000
+
+x, fs = soundfile.read("reference.wav")
+y, fs = soundfile.read("enhance.wav")
+
 # SIIB with MI function in C-implementation (this is used in [1],[2])
 SIIB(x, y, fs)
 # SIIB with MI function in python implementation
