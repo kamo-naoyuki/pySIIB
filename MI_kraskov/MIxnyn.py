@@ -8,6 +8,8 @@ ffi = FFI()
 
 
 def MIxnyn(x, y, k, addnoise=None):
+    assert x.ndim <= 2, x.ndim
+    assert y.ndim <= 2, y.ndim
     if addnoise is None:
         addnoise = -1.
     if x.ndim == 1:
