@@ -17,9 +17,11 @@ def SIIB(x, y, fs_signal, window_length=400,
          window_shift=200, window='hanning',
          delta_dB=40,
          gauss=False, use_MI_Kraskov=True):
-    """
-    Speech intelligibility in bits (SIIB)
+    """Speech intelligibility in bits (SIIB)
     and with Gaussian capacity (SIIB^Gauss)
+    
+    Python implementation is ported from 
+    https://stevenvankuyk.com/matlab_code/
 
     --------------------------------------------------------------------------
      Copyright 2018: Steven Van Kuyk.
@@ -36,8 +38,6 @@ def SIIB(x, y, fs_signal, window_length=400,
      You should have received a copy of the GNU General Public License
      along with this program.  If not, see <http://www.gnu.org/licenses/>.
     --------------------------------------------------------------------------
-
-     Contact: steven.jvk@gmail.com
 
     References:
       [1] S. Van Kuyk, W. B. Kleijn, R. C. Hendriks, 'An instrumental
