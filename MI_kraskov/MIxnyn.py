@@ -10,16 +10,12 @@ ffi = FFI()
 def MIxnyn(x, y, k, addnoise=None):
     if addnoise is None:
         addnoise = -1.
-    assert x.ndim == 1, x.ndim
-    assert y.ndim == 1, y.ndim
-    assert len(x) == len(y), (len(x), len(y))
+    if x.ndim == 1:
+        x = x[None]
+    if y.ndim == 1:
+        y = y[None]
+    assert x.shape[1] == y.shape[1], (x.shape[1], y.shape[1])
     xy = np.asarray([x, y], dtype=np.float64)
     ptr = ffi.cast('double *', ffi.from_buffer(xy))
     # Warning! MIxnyn modifies the value!
-    return lib.MIxnyn(ptr, 1, 1, len(x), k, addnoise)
-
-
-if __name__ == '__main__':
-    x = np.random.randn(2, 2)
-    y = np.random.randn(2, 2)
-    print(MIxnyn(x, y, 4))
+    return lib.MIxnyn(ptr, x.shape[0], y.shape[0], x.shape[1], k, addnoise)
