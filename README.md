@@ -19,8 +19,8 @@ pip install git+https://github.com/kamo-naoyuki/pySIIB.git
 from pysiib import SIIB
 from scipy.io import wavefile
 
-fs, x = wavfile.read("reference.wav")
-fs, y = wavfile.read("enhance.wav")
+fs, x = wavfile.read("clean.wav")
+fs, y = wavfile.read("distorted.wav")
 
 # SIIB with MI function in C-implementation (this is used in [1],[2])
 SIIB(x, y, fs)
