@@ -71,8 +71,7 @@ pkg load signal;
 [y, fs] = audioread("{yp}");
 I =  SIIB_Gauss(x, y, fs);
 disp(I)
-'''.ffrom scipy.io import wavefile
-ormat(xp=xp, yp=yp)
+'''.format(xp=xp, yp=yp)
     s = run_octave(cmd)
     s = float(s)
     t = SIIB(x, y, fs, gauss=True)

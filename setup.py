@@ -18,7 +18,8 @@ setup(
     classifiers=[
         "Programming Language :: Python",
     ],
-    packages=["", "MI_kraskov"],
+    packages=["MI_kraskov"],
+    py_modules=["pysiib"],
     install_requires=["cffi>=1.0.0", "numpy", "scipy"],
     setup_requires=["cffi>=1.0.0", 'pytest-runner'],
     tests_require=['pytest', 'pytest-cov'],
