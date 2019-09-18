@@ -1,4 +1,4 @@
-function [I] = SIIB(x, y, fs_signal, knn_flag)
+function [I] = SIIB(x, y, fs_signal, knn_flag, execpath)
 % Speech intelligibility in bits (SIIB)
 %
 %--------------------------------------------------------------------------
@@ -60,8 +60,11 @@ function [I] = SIIB(x, y, fs_signal, knn_flag)
 %
 %--------------------------------------------------------------------------
 
-if nargin == 3
+if nargin <= 3
     knn_flag = false; % see above
+end
+if nargin <= 4
+    execpath = 'MI_kraskov/MIxnyn';
 end
 
 if length(x)~=length(y)
@@ -151,7 +154,7 @@ g = 150;
 k = max(2, ceil(size(X,2)/g) ); % number of nearest neighbours (Kraskov recommends k=2-6 but really it depends on the amount of data available and bias vs variance tradeoff)
 I_channels = zeros(1,size(X,1));
 for j=1:size(X,1)
-    I_channels(j) =  I_kras(X(j,:), Y(j,:), k, knn_flag);
+    I_channels(j) =  I_kras(X(j,:), Y(j,:), k, knn_flag, execpath);
 end
 
 % speech production channel
@@ -220,7 +223,7 @@ cf=cf(:);
 A(A<0.001) = 0;
 
 %%
-function I = I_kras(x,y,k,knn_flag)
+function I = I_kras(x,y,k,knn_flag, execpath)
 % this function estimates the mutual information (in bits) of x and y using a non-parametric
 % nearest neighbour estimator ['Estimating Mutual Information", Kraskov et al., 2004]
 % Note that this function relies on C-code distributed by Kraskov et al.
@@ -260,15 +263,12 @@ else            % use Kraskov et al. implementation (requires C-code)
     [Ndy,~]=size(y);
 
     % save data to disk
-    currentDir = pwd;
-    cd([currentDir '/MI_kraskov']) % may need to change / to \
     xy=[x;y]';
     save xydata.txt xy -ascii
 
     % execute C-code (unix or windows)
-    [status, output]=unix( ['./MIxnyn xydata.txt ',num2str(Ndx),' ',num2str(Ndy),' ',num2str(N),' ',num2str(k)] ); % unix
+    [status, output]=unix( [execpath, ' xydata.txt ',num2str(Ndx),' ',num2str(Ndy),' ',num2str(N),' ',num2str(k)] ); % unix
     %[status, output]=dos( ['MIxnyn.exe xydata.txt ',num2str(Ndx),' ',num2str(Ndy),' ',num2str(N),' ',num2str(k)] ); % windows
-    cd(currentDir)
     if status
         display(output)
         error('Error: C-code did not execute \n Try compiling MIxnyn.C, or set knn_flag=true to use the MATLAB implementation.',[])
