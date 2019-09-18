@@ -6,7 +6,7 @@ python:
 - '3.6'
 install:
 - sudo apt-get install -y sox
-- sudo apt-get install octave
+- sudo apt-get install octave liboctave-dev
 - echo "pkg install -forge control;pkg install -forge signal;" | octave
 - pip install -e .
 - pip install pycodestyle flake8 codecov
