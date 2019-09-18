@@ -5,9 +5,9 @@ addons:
     sources:
       - ubuntu-toolchain-r-test
     packages:
-      - cmake
-      - python3-dev
       - g++-7
+env:
+- CC=gcc-7 CXX=g++-7
 python:
 - '2.7'
 - '3.5'
