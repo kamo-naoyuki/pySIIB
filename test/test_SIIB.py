@@ -50,7 +50,7 @@ disp(I)
     s = run_octave(cmd)
     s = float(s)
     t = SIIB(x, y, fs)
-    np.testing.assert_allclose(s, t, rtol=1e-02)
+    np.testing.assert_allclose(s, t, rtol=1e-01)
 
 
 def test_SIIB_python(wavs):
@@ -66,7 +66,7 @@ disp(I)
     s = run_octave(cmd)
     s = float(s)
     t = SIIB(x, y, fs, use_MI_Kraskov=False)
-    np.testing.assert_allclose(s, t, rtol=1e-02)
+    np.testing.assert_allclose(s, t, rtol=1e-01)
 
 
 def test_SIIB_gauss(wavs):
@@ -82,4 +82,4 @@ disp(I)
     s = run_octave(cmd)
     s = float(s)
     t = SIIB(x, y, fs, gauss=True)
-    np.testing.assert_allclose(s, t, rtol=1e-02)
+    np.testing.assert_allclose(s, t, rtol=1e-01)
