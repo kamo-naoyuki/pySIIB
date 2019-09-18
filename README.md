@@ -1,6 +1,7 @@
 # pySIIB: A python implementation of speech intelligibility in bits (SIIB)
 
 [![Build Status](https://travis-ci.org/kamo-naoyuki/pySIIB.svg?branch=master)](https://travis-ci.org/kamo-naoyuki/pySIIB)
+[![codecov](https://codecov.io/gh/kamo-naoyuki/pySIIB/branch/master/graph/badge.svg)](https://codecov.io/gh/kamo-naoyuki/pySIIB)
 
 SIIB is an intrusive instrumental intelligibility metric.
 This Python implementation of SIIB is ported from the author's matlab codes: https://stevenvankuyk.com/matlab_code/
