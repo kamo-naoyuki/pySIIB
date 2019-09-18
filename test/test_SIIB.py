@@ -26,7 +26,7 @@ def wavs():
     xp = os.path.join(d, 'x.wav')
     yp = os.path.join(d, 'y.wav')
 
-    fs = 16000
+    fs = 8000
     x = np.random.randint(-1000, 1000, fs * 10, dtype=np.int16)
     y = np.random.randint(-1000, 1000, fs * 10, dtype=np.int16)
     wavfile.write(xp, fs, x)
