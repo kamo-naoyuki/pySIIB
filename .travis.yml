@@ -1,13 +1,18 @@
 sudo: false
 language: python
+addons:
+  apt:
+    packages:
+      - cmake
+      - python3-dev
+      - g++-7
 python:
 - '2.7'
 - '3.5'
 - '3.6'
 install:
-- sudo apt-get install -y sox
-- sudo apt-get install octave liboctave-dev
-- echo "pkg install -forge control;pkg install -forge signal;" | octave
+- sudo apt-get install -y octave liboctave-dev
+- echo "pkg install -forge control;pkg install -forge signal;" | octave --no-gui
 - pip install -e .
 - pip install pycodestyle flake8 codecov
 script:
