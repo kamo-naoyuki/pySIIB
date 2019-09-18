@@ -61,9 +61,6 @@ double MIxnyn(double *_x, int dimx, int dimy, int N, int K, double addnoise) {
   // Copying input data
   for (d=0;d<dimx+dimy;d++) {
       x[d] = _x + N * d;
-      // for (i=0;i<N;i++) {
-      //        x[d][i] = _x[N * d + i];
-      // }
   }
   // add noise
   if (addnoise) {
