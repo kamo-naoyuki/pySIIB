@@ -41,6 +41,7 @@ def test_SIIB_C(wavs):
     fs, x, y, xp, yp = wavs
     cmd = '''
 pkg load signal;
+pkg load specfun;
 [x, fs] = audioread("{xp}");
 [y, fs] = audioread("{yp}");
 I =  SIIB(x, y, fs, false, '{execpath}');
@@ -56,6 +57,7 @@ def test_SIIB_python(wavs):
     fs, x, y, xp, yp = wavs
     cmd = '''
 pkg load signal;
+pkg load specfun;
 [x, fs] = audioread("{xp}");
 [y, fs] = audioread("{yp}");
 I =  SIIB(x, y, fs, true);
@@ -71,6 +73,7 @@ def test_SIIB_gauss(wavs):
     fs, x, y, xp, yp = wavs
     cmd = '''
 pkg load signal;
+pkg load specfun;
 [x, fs] = audioread("{xp}");
 [y, fs] = audioread("{yp}");
 I =  SIIB_Gauss(x, y, fs);
