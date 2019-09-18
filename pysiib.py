@@ -309,7 +309,7 @@ def get_vad(x, window_length, window_shift, window, delta_db):
     x_dB = 10 * np.log10((x_frame ** 2).mean(axis=1) + EPS)
 
     # find the 99.9 percentile
-    ind = round(len(x_dB) * 0.999) - 1
+    ind = int(round(len(x_dB) * 0.999) - 1)
     max_x = np.partition(x_dB, ind)[ind]
     return x_dB > (max_x - delta_db)
 
