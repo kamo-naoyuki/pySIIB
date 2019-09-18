@@ -1,0 +1,17 @@
+sudo: false
+language: python
+python:
+- '2.7'
+- '3.5'
+- '3.6'
+install:
+- sudo apt-get install -y sox
+- sudo apt-get install octave
+- pip install -e .
+- pip install pycodestyle flake8 codecov
+script:
+- python setup.py test
+- pycodestyle pysiib.py MI_kraskov test
+- flake8 pysiib.py MI_kraskov test
+after_success:
+- codecov
