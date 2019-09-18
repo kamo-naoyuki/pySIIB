@@ -19,8 +19,8 @@ def SIIB(x, y, fs_signal, window_length=400,
          gauss=False, use_MI_Kraskov=True):
     """Speech intelligibility in bits (SIIB)
     and with Gaussian capacity (SIIB^Gauss)
-    
-    Python implementation is ported from 
+
+    Python implementation is ported from
     https://stevenvankuyk.com/matlab_code/
 
     --------------------------------------------------------------------------
@@ -166,21 +166,23 @@ def SIIB(x, y, fs_signal, window_length=400,
         Imx = -0.5 * np.log2(1 - rho_p ** 2)
 
         # compute SIIB
-        I = (R / K) * np.sum(np.minimum(Imx, I_channels))  # bit/s
+        retval = (R / K) * np.sum(np.minimum(Imx, I_channels))  # bit/s
     else:
         # Estimate mutual information using the capacity of a Gaussian channel
         X = X.T
         Y = Y.T
         # production noise correlation coefficient
         rho_p_squared = 0.75 ** 2
-        # long-time squared correlation coefficient for the environmental channel
+        # long-time squared correlation coefficient
+        # for the environmental channel
         rho_squared = np.mean(X * Y, 0) ** 2 / \
             (np.mean(X ** 2, 0) * np.mean(Y ** 2, 0))
         # Gaussian capacity (bits/s) (equation (1) in [2])
-        I = - 0.5 * R / K * np.sum(np.log2(1 - rho_p_squared * rho_squared), 0)
+        retval = - 0.5 * R / K * \
+            np.sum(np.log2(1 - rho_p_squared * rho_squared), 0)
 
-    I = np.maximum(0, I)
-    return I
+    retval = np.maximum(0, retval)
+    return retval
 
 
 def I_kras(x, y, k, use_MI_Kraskov=True):
@@ -225,15 +227,15 @@ def I_kras(x, y, k, use_MI_Kraskov=True):
         nx = np.array(nx)
         ny = np.array(ny)
         # info in nats (Eq. 8 in Kraskov)
-        I = psi(k) - np.mean(psi(nx + 1) + psi(ny + 1)) + psi(N)
-        I = I / np.log(2)  # nats to bits
+        retval = psi(k) - np.mean(psi(nx + 1) + psi(ny + 1)) + psi(N)
+        retval = retval / np.log(2)  # nats to bits
 
     # use Kraskov et al. implementation (requires C-code)
     else:
-        I = MIxnyn(x, y, k)
-        I = I / np.log(2)  # nats to bits
+        retval = MIxnyn(x, y, k)
+        retval = retval / np.log(2)  # nats to bits
 
-    return I
+    return retval
 
 
 def gammatone(fs, N_fft, numBands, cf_min, cf_max):

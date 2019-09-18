@@ -15,8 +15,7 @@ ffi.set_source(os.path.basename(base) + "._MIxnyn",
                libraries=["c"])
 
 
-ffi.cdef(
-"""
+ffi.cdef("""
 double MIxnyn(double *_x, int dimx, int dimy, int N, int K, double addnoise);
 """)
 

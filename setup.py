@@ -20,7 +20,8 @@ setup(
     ],
     packages=["", "MI_kraskov"],
     install_requires=["cffi>=1.0.0", "numpy", "scipy"],
-    setup_requires=["cffi>=1.0.0"],
+    setup_requires=["cffi>=1.0.0", 'pytest-runner'],
+    tests_require=['pytest', 'pytest-cov'],
     cffi_modules=[
         "./MI_kraskov/build_MIxnyn.py:ffi",
     ],
