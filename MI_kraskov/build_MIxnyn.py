@@ -5,8 +5,11 @@ from cffi import FFI
 ffi = FFI()
 
 base = os.path.abspath(os.path.dirname(__file__))
-ffi.set_source(os.path.basename(base) + "._MIxnyn", "",
-               sources=[os.path.join(base, j) for j in ["MIxnyn.C", "miutils.C"]],
+source = ""
+for j in ["MIxnyn.C", "miutils.C"]:
+    with open(os.path.join(base, j)) as f:
+        source += f.read()
+ffi.set_source(os.path.basename(base) + "._MIxnyn", source,
                include_dirs=[base],
                libraries=["c"])
 
