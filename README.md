@@ -27,12 +27,12 @@ fs, y = wavfile.read("distorted.wav")
 SIIB(x, y, fs)
 # SIIB with MI function in python implementation
 SIIB(x, y, fs, use_MI_Kraskov=False)
-# SIIB^gauss
+# SIIB^Gauss
 SIIB(x, y, fs, gauss=True)
 ```
 
 There are two version metrics called as SIIB [1] and  SIIB^Gauss [2].
-SIIBGauss has similar performance to SIIB, but takes less time to
+SIIB^Gauss has similar performance to SIIB, but takes less time to
 compute.
 
 ## IMPORTANT
