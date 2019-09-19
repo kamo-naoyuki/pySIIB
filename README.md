@@ -3,8 +3,9 @@
 [![Build Status](https://travis-ci.org/kamo-naoyuki/pySIIB.svg?branch=master)](https://travis-ci.org/kamo-naoyuki/pySIIB)
 [![codecov](https://codecov.io/gh/kamo-naoyuki/pySIIB/branch/master/graph/badge.svg)](https://codecov.io/gh/kamo-naoyuki/pySIIB)
 
-SIIB is an intrusive instrumental intelligibility metric.
-This Python implementation of SIIB is ported from the author's matlab codes: https://stevenvankuyk.com/matlab_code/
+SIIB is an intrusive instrumental intelligibility metric based on infortmation theory.
+This Python implementation of SIIB is ported from the author's matlab codes: https://stevenvankuyk.com/matlab_code/. 
+The behaviour is almost compatible of original codes. 
 
 ## Install
 
@@ -30,8 +31,14 @@ SIIB(x, y, fs, use_MI_Kraskov=False)
 SIIB(x, y, fs, gauss=True)
 ```
 
-The first version is proposed in [1] and  SIIB^Gauss is more simple implmentation and faster.
-The speed comparison is SIIB^gauss > C-SIIB > python-SIIB.
+There are two version metrics called as SIIB [1] and  SIIB^Gauss [2].
+SIIBGauss has similar performance to SIIB, but takes less time to
+compute.
+
+## IMPORTANT
+
+- SIIB assumes that x any y are time-aligned.
+- SIIB may not be reliable for stimuli with short durations(e.g., less than 20 seconds). Note that longer stimuli can be created by concatenating short stimuli together.
 
 ## Reference
 
