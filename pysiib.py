@@ -230,13 +230,12 @@ def I_kras(x, y, k, use_MI_Kraskov=True):
         ny = np.array(ny)
         # info in nats (Eq. 8 in Kraskov)
         retval = psi(k) - np.mean(psi(nx + 1) + psi(ny + 1)) + psi(N)
-        retval = retval / np.log(2)  # nats to bits
 
     # use Kraskov et al. implementation (requires C-code)
     else:
         retval = MIxnyn(x, y, k)
-        retval = retval / np.log(2)  # nats to bits
 
+    retval = retval / np.log(2)  # nats to bits
     return retval
 
 
@@ -291,12 +290,12 @@ def framing(x, window_length, window_shift, window):
     strides = x.strides + (x.strides[-1],)
     y = np.lib.stride_tricks.as_strided(
         x, shape=shape, strides=strides)[..., ::window_shift, :]
-    w = get_window('hanning', window_length)[None, :]
+    w = get_window(window, window_length)[None, :]
     return y * w
 
 
 def stft(x, window_length, window_shift, window):
-    frames = framing(x, window_length, window_shift, window='hanning')
+    frames = framing(x, window_length, window_shift, window=window)
     return fft(frames, n=window_length, axis=-1)[:, :window_length // 2 + 1]
 
 
