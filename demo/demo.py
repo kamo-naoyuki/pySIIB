@@ -29,8 +29,6 @@ import matplotlib.pyplot as plt
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # --------------------------------------------------------------------------
 #
-# Contact: steven.jvk@gmail.com
-#
 # References:
 #   [1] S. Van Kuyk, W. B. Kleijn, R. C. Hendriks, 'An instrumental
 #       intelligibility metric based on information theory', 2018
