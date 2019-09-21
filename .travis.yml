@@ -19,7 +19,8 @@ install:
 - pip install pycodestyle flake8 codecov
 script:
 - python setup.py test
-- pycodestyle pysiib.py MI_kraskov test
-- flake8 pysiib.py MI_kraskov test
+- pycodestyle pysiib.py MI_kraskov test demo
+- flake8 pysiib.py MI_kraskov test demo
+- cd demo; python demo.py; cd ..
 after_success:
 - codecov
