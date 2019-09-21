@@ -4,8 +4,8 @@
 [![codecov](https://codecov.io/gh/kamo-naoyuki/pySIIB/branch/master/graph/badge.svg)](https://codecov.io/gh/kamo-naoyuki/pySIIB)
 
 SIIB is an intrusive instrumental intelligibility metric based on infortmation theory.
-This Python implementation of SIIB is ported from the author's matlab codes: https://stevenvankuyk.com/matlab_code/. 
-The behaviour is almost compatible of original codes. 
+This Python implementation of SIIB is ported from the author's matlab codes: https://stevenvankuyk.com/matlab_code/.
+The behaviour is almost compatible of original codes.
 
 ## Install
 
@@ -34,6 +34,16 @@ SIIB(x, y, fs, gauss=True)
 There are two version metrics called as SIIB [1] and  SIIB^Gauss [2].
 SIIB^Gauss has similar performance to SIIB, but takes less time to
 compute.
+
+## demo
+
+```bash
+cd demo
+python demo.py
+```
+
+<a href="./demo/SIIB.png">
+<a href="./demo/SIIB_Gauss.png">
 
 ## IMPORTANT
 
