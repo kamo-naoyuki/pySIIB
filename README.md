@@ -35,20 +35,21 @@ There are two version metrics called as SIIB [1] and  SIIB^Gauss [2].
 SIIB^Gauss has similar performance to SIIB, but takes less time to
 compute.
 
-## demo
+## IMPORTANT
+
+- SIIB assumes that x any y are time-aligned.
+- SIIB may not be reliable for stimuli with short durations(e.g., less than 20 seconds). Note that longer stimuli can be created by concatenating short stimuli together.
+
+## Demo
 
 ```bash
 cd demo
 python demo.py
 ```
 
-<a href="./demo/SIIB.png">
-<a href="./demo/SIIB_Gauss.png">
+<img src="./demo/SIIB.png">
+<img src="./demo/SIIB_Gauss.png">
 
-## IMPORTANT
-
-- SIIB assumes that x any y are time-aligned.
-- SIIB may not be reliable for stimuli with short durations(e.g., less than 20 seconds). Note that longer stimuli can be created by concatenating short stimuli together.
 
 ## Reference
 
