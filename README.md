@@ -47,8 +47,7 @@ cd demo
 python demo.py
 ```
 
-<img src="./demo/SIIB.png">
-<img src="./demo/SIIB_Gauss.png">
+<img src="./demo/SIIB.png" width="50%" height="50%"><img src="./demo/SIIB_Gauss.png" width="50%" height="50%">
 
 
 ## Reference
