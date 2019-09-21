@@ -37,7 +37,7 @@ compute.
 
 ## IMPORTANT
 
-- SIIB assumes that x any y are time-aligned.
+- SIIB assumes that x and y are time-aligned.
 - SIIB may not be reliable for stimuli with short durations(e.g., less than 20 seconds). Note that longer stimuli can be created by concatenating short stimuli together.
 
 ## Demo
