@@ -43,6 +43,7 @@ compute.
 ## Demo
 
 ```bash
+pip install matplotlib  # If you don't have
 cd demo
 python demo.py
 ```
