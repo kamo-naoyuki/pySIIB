@@ -128,7 +128,6 @@ def SIIB(x, y, fs_signal, gauss=False, use_MI_Kraskov=True,
     for i in range(X.shape[1]):
         # frame indices
         ii = ii_[i:i + Tf]
-        # ii = np.minimum(np.arange(i, i + Tf), X.shape[1] - 1)
 
         f = X[:, i][:, None]
         # forward masking function [Rhebergen et al., 2006]
