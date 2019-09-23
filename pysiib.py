@@ -15,15 +15,25 @@ from MI_kraskov.MIxnyn import MIxnyn
 EPS = np.finfo(np.float64).eps
 
 
-def SIIB(x, y, fs_signal, window_length=400,
-         window_shift=200, window='hanning',
-         delta_dB=40,
-         gauss=False, use_MI_Kraskov=True):
+def SIIB(x, y, fs_signal, gauss=False, use_MI_Kraskov=True,
+         window_length=400, window_shift=200, window='hanning', delta_dB=40):
     """Speech intelligibility in bits (SIIB)
     and with Gaussian capacity (SIIB^Gauss)
 
     Python implementation is ported from
     https://stevenvankuyk.com/matlab_code/
+
+    Args:
+        x (np.ndarray): Clean signal
+        y (np.ndarray): Distorted signal
+        fs_signal (float): The sample frequency of input signal.
+        gauss (bool): Use SIIB^Gauss.
+        use_MI_Kraskov (bool): Use C-implementation for SIIB calculation.
+            This is not valid for SIIB^Gauss mode.
+        window_length (float):
+        window_shift (float):
+        window (str):
+        delta_dB (float)): Decide VAD threshold
 
     --------------------------------------------------------------------------
      Copyright 2018: Steven Van Kuyk.
@@ -106,24 +116,28 @@ def SIIB(x, y, fs_signal, window_length=400,
 
     # forward temporal masking (see Rhebergen et al., 2006)
     Tf = int(np.floor(0.2 * R))  # 200 ms
-    ind = np.arange(1, X.shape[1])[None]
     # 'hearing threshold' replacement (dB)
     E_tf = X.min(axis=1, keepdims=True)
     # initialize forward masking function
     Xd = np.full(X.shape, -np.inf)
     Yd = np.full(X.shape, -np.inf)
+
+    T0 = 1
+    ind = np.log(np.arange(T0, X.shape[1]) / T0) / np.log(Tf / T0)
+    ii_ = np.minimum(np.arange(X.shape[1] + Tf), X.shape[1] - 1)
     for i in range(X.shape[1]):
         # frame indices
-        ii = np.minimum(np.arange(i, i + Tf), X.shape[1] - 1)
+        ii = ii_[i:i + Tf]
+        # ii = np.minimum(np.arange(i, i + Tf), X.shape[1] - 1)
 
         f = X[:, i][:, None]
         # forward masking function [Rhebergen et al., 2006]
-        frame = f - (np.log(ind[:, :len(ii)]) / np.log(Tf)) * (f - E_tf)
+        frame = f - ind[:Tf][None] * (f - E_tf)
         # max between clean signal and masking function
         Xd[:, ii] = np.maximum(Xd[:, ii], frame)
 
         f = Y[:, i][:, None]
-        frame = f - (np.log(ind[:, :len(ii)]) / np.log(Tf)) * (f - E_tf)
+        frame = f - ind[:Tf][None] * (f - E_tf)
         Yd[:, ii] = np.maximum(Yd[:, ii], frame)
     X = Xd
     Y = Yd
@@ -363,7 +377,9 @@ if __name__ == '__main__':
     import time
     fs, x = wavfile.read('demo/clean.wav')
     fs, y = wavfile.read('demo/noise.wav')
+    x = x.astype(np.float64)
+    y = y.astype(np.float64)
     y = x + y[:len(x)]
     t = time.perf_counter()
-    print(SIIB(x, y, fs, gauss=True))
+    print(SIIB(x, y, fs, gauss=False))
     print(time.perf_counter() - t)
