@@ -129,13 +129,13 @@ def SIIB(x, y, fs_signal, gauss=False, use_MI_Kraskov=True,
         # frame indices
         ii = ii_[i:i + Tf]
 
-        f = X[:, i][:, None]
+        f = X[:, i, None]
         # forward masking function [Rhebergen et al., 2006]
         frame = f - ind[None, :Tf] * (f - E_tf)
         # max between clean signal and masking function
         Xd[:, ii] = np.maximum(Xd[:, ii], frame)
 
-        f = Y[:, i][:, None]
+        f = Y[:, i, None]
         frame = f - ind[None, :Tf] * (f - E_tf)
         Yd[:, ii] = np.maximum(Yd[:, ii], frame)
     X = Xd
