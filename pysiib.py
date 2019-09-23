@@ -69,8 +69,9 @@ def SIIB(x, y, fs_signal, window_length=400,
     # initialization
     fs = 16000                             # sample rate of acoustic signals
     R = 1 / window_shift * fs              # frames/second
-    y = y / max(np.std(x), EPS)            # received speech
-    x = x / max(np.std(x), EPS)            # clean speech
+    std = max(np.std(x), EPS)
+    x = x / std                            # clean speech
+    y = y / std                            # received speech
 
     # resample signals to fs
     if fs_signal != fs:
@@ -104,33 +105,28 @@ def SIIB(x, y, fs_signal, window_length=400,
     Y = np.log(np.matmul(G ** 2, y_hat + EPS))
 
     # forward temporal masking (see Rhebergen et al., 2006)
-    T0 = 0
     Tf = int(np.floor(0.2 * R))  # 200 ms
-    for j in range(J):
-        # 'hearing threshold' replacement (dB)
-        E_tf = X[j, :].min()
-        # initialize forward masking function
-        Xfmf = np.full((X.shape[1]), -np.inf)
-        Yfmf = np.full((X.shape[1]), -np.inf)
+    ind = np.arange(1, X.shape[1])[None]
+    # 'hearing threshold' replacement (dB)
+    E_tf = X.min(axis=1, keepdims=True)
+    # initialize forward masking function
+    Xd = np.full(X.shape, -np.inf)
+    Yd = np.full(X.shape, -np.inf)
+    for i in range(X.shape[1]):
+        # frame indices
+        ii = np.minimum(np.arange(i, i + Tf), X.shape[1] - 1)
 
-        # overlap max (similar to overlap add)
-        for i in range(X.shape[1]):
-            # frame indices
-            ii = np.minimum(np.arange(i, i + Tf), X.shape[1] - 1)
-            frame = X[j, ii]
-            # forward masking function [Rhebergen et al., 2006]
-            frame = frame[T0] - (np.log(np.arange(T0 + 1, Tf + 1)) /
-                                 np.log(Tf)) * (frame[T0] - E_tf)
-            # max between clean signal and masking function
-            Xfmf[ii] = np.maximum(Xfmf[ii], frame)
+        f = X[:, i][:, None]
+        # forward masking function [Rhebergen et al., 2006]
+        frame = f - (np.log(ind[:, :len(ii)]) / np.log(Tf)) * (f - E_tf)
+        # max between clean signal and masking function
+        Xd[:, ii] = np.maximum(Xd[:, ii], frame)
 
-            frame = Y[j, ii]
-            frame = frame[T0] - (np.log(np.arange(T0 + 1, Tf + 1)) /
-                                 np.log(Tf)) * (frame[T0] - E_tf)
-            Yfmf[ii] = np.maximum(Yfmf[ii], frame)
-
-        X[j, :] = Xfmf
-        Y[j, :] = Yfmf
+        f = Y[:, i][:, None]
+        frame = f - (np.log(ind[:, :len(ii)]) / np.log(Tf)) * (f - E_tf)
+        Yd[:, ii] = np.maximum(Yd[:, ii], frame)
+    X = Xd
+    Y = Yd
 
     # remove mean (for KLT)
     X = X - np.mean(X, 1, keepdims=True)
@@ -363,7 +359,11 @@ def _resample_window_oct(p, q):
 
 
 if __name__ == '__main__':
-    import soundfile
-    x, _ = soundfile.read('a.wav')
-    y, _ = soundfile.read('b.wav')
-    print(SIIB(x, y, 16000, gauss=True))
+    from scipy.io import wavfile
+    import time
+    fs, x = wavfile.read('demo/clean.wav')
+    fs, y = wavfile.read('demo/noise.wav')
+    y = x + y[:len(x)]
+    t = time.perf_counter()
+    print(SIIB(x, y, fs, gauss=True))
+    print(time.perf_counter() - t)
