@@ -13,7 +13,6 @@ The behaviour is almost compatible of original codes.
 pip install git+https://github.com/kamo-naoyuki/pySIIB.git
 ```
 
-
 ## Usage
 
 ```python
@@ -55,3 +54,13 @@ python demo.py
 
 - [1] S. Van Kuyk, W. B. Kleijn, and R. C. Hendriks, ‘An instrumental intelligibility metric based on information theory’, IEEE Signal Processing Letters, 2018.
 - [2] S. Van Kuyk, W. B. Kleijn, and R. C. Hendriks, ‘An evaluation of intrusive instrumental intelligibility metrics’, IEEE/ACM Transactions on Audio, Speech, and Language Processing, 2018.
+
+
+## Links for the implementation for objective measurement for speech.
+- STOI (Python): https://github.com/mpariente/pystoi
+- STOI (matlab): http://www.ceestaal.nl/code/
+- PESQ (C): https://www.itu.int/rec/T-REC-P.862
+- PESQ, STOI, STI (matlab): https://github.com/JacobD10/SoundZone_Tools
+- SRMR (Python): https://github.com/jfsantos/SRMRpy
+- CD, LLR, FWsegSNR, SRMR (matlab): https://reverb2014.dereverberation.com/download.html
+
