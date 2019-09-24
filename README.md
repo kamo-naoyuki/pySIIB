@@ -61,6 +61,3 @@ python demo.py
 - STOI (matlab): http://www.ceestaal.nl/code/
 - PESQ (C): https://www.itu.int/rec/T-REC-P.862
 - PESQ, STOI, STI (matlab): https://github.com/JacobD10/SoundZone_Tools
-- SRMR (Python): https://github.com/jfsantos/SRMRpy
-- CD, LLR, FWsegSNR, SRMR (matlab): https://reverb2014.dereverberation.com/download.html
-
