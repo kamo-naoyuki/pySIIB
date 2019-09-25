@@ -58,6 +58,8 @@ python demo.py
 
 ## Links for the implementation for objective measurement for speech
 - STOI (Python): https://github.com/mpariente/pystoi
-- STOI (matlab): http://www.ceestaal.nl/code/
+- STOI (Matlab): http://www.ceestaal.nl/code/
 - PESQ (C): https://www.itu.int/rec/T-REC-P.862
-- PESQ, STOI, STI (matlab): https://github.com/JacobD10/SoundZone_Tools
+- PESQ, STOI, STI (Matlab): https://github.com/JacobD10/SoundZone_Tools
+- sEPSM, mr-sEPSM, BsEPSM, SII (Python): https://github.com/achabotl/pambox
+- HASPI, HASQI (Matlab): https://github.com/cwbishop/SIN
