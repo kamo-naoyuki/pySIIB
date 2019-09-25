@@ -64,3 +64,4 @@ python demo.py
 - sEPSM, mr-sEPSM, BsEPSM, SII (Python): https://github.com/achabotl/pambox
 - HASPI, HASQI (Matlab): https://github.com/cwbishop/SIN
 - SII, CSII, NCM, CEP, LLR, IS, FWsegSNR, WSS, PESQ (Matlab): https://github.com/jtkim-kaist/Speech-enhancement/tree/master/SE/lib/sub_lib/MATLAB_code/objective_measures
+- SRMR (Python): https://github.com/jfsantos/SRMRpy
