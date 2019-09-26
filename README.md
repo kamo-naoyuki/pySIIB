@@ -61,6 +61,7 @@ python demo.py
 - STOI (Matlab): http://www.ceestaal.nl/code/
 - PESQ (C): https://www.itu.int/rec/T-REC-P.862
 - PESQ, STOI, STI (Matlab): https://github.com/JacobD10/SoundZone_Tools
+- MIKNN (R): https://github.com/dbrookeUAB/miknn 
 - sEPSM, mr-sEPSM, BsEPSM, SII (Python): https://github.com/achabotl/pambox
 - HASPI, HASQI (Matlab): https://github.com/cwbishop/SIN
 - SII, CSII, NCM, CEP, LLR, IS, FWsegSNR, WSS, PESQ (Matlab): https://github.com/jtkim-kaist/Speech-enhancement/tree/master/SE/lib/sub_lib/MATLAB_code/objective_measures (by Philipos C. Loizou)
