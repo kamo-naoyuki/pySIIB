@@ -15,7 +15,7 @@ from MI_kraskov.MIxnyn import MIxnyn
 EPS = np.finfo(np.float64).eps
 
 
-def SIIB(x, y, fs_signal, gauss=False, use_MI_Kraskov=True,
+def SIIB(x, y, fs, gauss=False, use_MI_Kraskov=True,
          window_length=400, window_shift=200, window='hanning', delta_dB=40):
     """Speech intelligibility in bits (SIIB)
     and with Gaussian capacity (SIIB^Gauss)
@@ -26,14 +26,14 @@ def SIIB(x, y, fs_signal, gauss=False, use_MI_Kraskov=True,
     Args:
         x (np.ndarray): Clean signal
         y (np.ndarray): Distorted signal
-        fs_signal (float): The sample frequency of input signal.
+        fs (float): The sample frequency of input signal.
         gauss (bool): Use SIIB^Gauss.
         use_MI_Kraskov (bool): Use C-implementation for SIIB calculation.
             This is not valid for SIIB^Gauss mode.
         window_length (float):
         window_shift (float):
         window (str):
-        delta_dB (float)): Decide VAD threshold
+        delta_dB (float)): VAD threshold
 
     --------------------------------------------------------------------------
      Copyright 2018: Steven Van Kuyk.
@@ -77,16 +77,16 @@ def SIIB(x, y, fs_signal, gauss=False, use_MI_Kraskov=True,
         raise RuntimeError('x and y should have the same length')
 
     # initialization
-    fs = 16000                             # sample rate of acoustic signals
-    R = 1 / window_shift * fs              # frames/second
+    _fs = 16000                             # sample rate of acoustic signals
+    R = 1 / window_shift * _fs              # frames/second
     std = max(np.std(x), EPS)
     x = x / std                            # clean speech
     y = y / std                            # received speech
 
     # resample signals to fs
-    if fs_signal != fs:
-        x = resample_oct(x, fs, fs_signal)
-        y = resample_oct(y, fs, fs_signal)
+    if fs != _fs:
+        x = resample_oct(x, _fs, fs)
+        y = resample_oct(y, _fs, fs)
 
     # get |STFT|**2
     x_hat = stft(x, window_length, window_shift, window).T
@@ -110,7 +110,7 @@ def SIIB(x, y, fs_signal, gauss=False, use_MI_Kraskov=True,
     # J: number of filters
     J = int(round(21.4 * np.log10(1 + 0.00437 * mx) -
                   21.4 * np.log10(1 + 0.00437 * mn)))
-    G = gammatone(fs, window_length, J, mn, mx)
+    G = gammatone(_fs, window_length, J, mn, mx)
     X = np.log(np.matmul(G ** 2, x_hat + EPS))  # equation (2) in [1]
     Y = np.log(np.matmul(G ** 2, y_hat + EPS))
 
