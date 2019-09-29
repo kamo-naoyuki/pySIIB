@@ -56,7 +56,7 @@ python demo.py
 - [2] S. Van Kuyk, W. B. Kleijn, and R. C. Hendriks, ‘An evaluation of intrusive instrumental intelligibility metrics’, IEEE/ACM Transactions on Audio, Speech, and Language Processing, 2018.
 
 
-## Links for the implementation for objective measurement for speech intelligibility/quality
+## Links for the implementation of objective measurement for speech intelligibility/quality
 - STOI (Python): https://github.com/mpariente/pystoi
 - STOI (Matlab): http://www.ceestaal.nl/code/
 - PESQ (C): https://www.itu.int/rec/T-REC-P.862
