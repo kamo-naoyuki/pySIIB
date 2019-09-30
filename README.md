@@ -62,6 +62,7 @@ python demo.py
 - PESQ (C): https://www.itu.int/rec/T-REC-P.862
 - PESQ, STOI, STI (Matlab): https://github.com/JacobD10/SoundZone_Tools
 - sEPSM, mr-sEPSM, BsEPSM, SII (Python): https://github.com/achabotl/pambox
-- HASPI, HASQI (Matlab): https://github.com/cwbishop/SIN
+- HASPI, HASQI (Matlab): https://www.colorado.edu/lab/hearlab/resources (Send request to author)
+  - https://github.com/cwbishop/SIN (I don't know whether this repo obtains the author's agreement)
 - SII, CSII, NCM, CEP, LLR, IS, FWsegSNR, WSS, PESQ (Matlab): https://github.com/jtkim-kaist/Speech-enhancement/tree/master/SE/lib/sub_lib/MATLAB_code/objective_measures (by Philipos C. Loizou)
 - SRMR (Python): https://github.com/jfsantos/SRMRpy
