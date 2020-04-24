@@ -5,7 +5,8 @@ import sys
 
 from setuptools import setup, find_packages
 
-os.chdir(os.path.dirname(sys.argv[0]) or ".")
+
+base = os.path.abspath(os.path.dirname(__file__))
 
 setup(
     name="pysiib",
@@ -24,6 +25,6 @@ setup(
     setup_requires=["cffi>=1.0.0", 'pytest-runner'],
     tests_require=['pytest', 'pytest-cov'],
     cffi_modules=[
-        "./MI_kraskov/build_MIxnyn.py:ffi",
+        os.path.join(base, "MI_kraskov/build_MIxnyn.py:ffi"),
     ],
 )
