@@ -15,5 +15,27 @@ jobs:
       - uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: install dependencies
-        run: pip install .
+      - name: install python packages
+        run: |
+           pip install -e .
+           pip install pycodestyle flake8 codecov matplotlib
+      - name: MacOS
+        if: runner.os == 'macOS'
+        run: |
+           brew install ovtave
+           echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | octave --no-gui
+      - name: MacOS
+        if: runner.os == 'Linux'
+        run: |
+           apt-get install -y octave liboctave-dev
+           echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | octave --no-gui
+      - name: test
+        if: runner.os != 'Windows'
+        run: python setup.py test
+      - name: pycodestyle
+        run: pycodestyle pysiib.py MI_kraskov test demo
+      - name: flake8
+        run: flake8 pysiib.py MI_kraskov test demo
+      - name: demo
+        if: runner.os != 'Windows'
+        run: cd demo; python demo.py; cd ..
