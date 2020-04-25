@@ -1,5 +1,7 @@
 # pySIIB: A python implementation of speech intelligibility in bits (SIIB)
 
+
+![CI](https://github.com/kamo-naoyuki/pySIIB/workflows/CI/badge.svg)
 [![Build Status](https://travis-ci.org/kamo-naoyuki/pySIIB.svg?branch=master)](https://travis-ci.org/kamo-naoyuki/pySIIB)
 [![codecov](https://codecov.io/gh/kamo-naoyuki/pySIIB/branch/master/graph/badge.svg)](https://codecov.io/gh/kamo-naoyuki/pySIIB)
 
