@@ -17,8 +17,8 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: install python packages
         run: |
-           pip install -e .
            pip install pycodestyle flake8 codecov matplotlib
+           pip install -e .
       - name: install for MacOS
         if: runner.os == 'macOS'
         run: |
