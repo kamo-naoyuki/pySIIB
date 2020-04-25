@@ -8,7 +8,7 @@ jobs:
     strategy:
       max-parallel: 20
       matrix:
-        os: [ubuntu-18.04, windows-2019, macOS-10.15]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
         python-version: [3.8]
     steps:
       - uses: actions/checkout@v2
@@ -19,23 +19,23 @@ jobs:
         run: |
            pip install -e .
            pip install pycodestyle flake8 codecov matplotlib
-      - name: MacOS
+      - name: install for MacOS
         if: runner.os == 'macOS'
         run: |
            brew install ovtave
            echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | octave --no-gui
-      - name: MacOS
+      - name: install for Linux
         if: runner.os == 'Linux'
         run: |
            apt-get install -y octave liboctave-dev
            echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | octave --no-gui
-      - name: test
-        if: runner.os != 'Windows'
-        run: python setup.py test
       - name: pycodestyle
         run: pycodestyle pysiib.py MI_kraskov test demo
       - name: flake8
         run: flake8 pysiib.py MI_kraskov test demo
+      - name: test
+        if: runner.os != 'Windows'
+        run: python setup.py test
       - name: demo
         if: runner.os != 'Windows'
         run: cd demo; python demo.py; cd ..
