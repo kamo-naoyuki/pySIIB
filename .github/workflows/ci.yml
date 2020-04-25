@@ -22,7 +22,7 @@ jobs:
       - name: install for MacOS
         if: runner.os == 'macOS'
         run: |
-           brew install ovtave
+           brew install octave
            echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | sudo octave --no-gui
       - name: install for Linux
         if: runner.os == 'Linux'
