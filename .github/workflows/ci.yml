@@ -23,12 +23,12 @@ jobs:
         if: runner.os == 'macOS'
         run: |
            brew install ovtave
-           echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | octave --no-gui
+           echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | sudo octave --no-gui
       - name: install for Linux
         if: runner.os == 'Linux'
         run: |
-           apt-get install -y octave liboctave-dev
-           echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | octave --no-gui
+           sudo apt-get install -y octave liboctave-dev
+           echo "pkg install -forge control;pkg install -forge signal;pkg install -forge specfun;" | sudo octave --no-gui
       - name: pycodestyle
         run: pycodestyle pysiib.py MI_kraskov test demo
       - name: flake8
