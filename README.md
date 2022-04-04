@@ -19,7 +19,7 @@ pip install git+https://github.com/kamo-naoyuki/pySIIB.git
 
 ```python
 from pysiib import SIIB
-from scipy.io import wavefile
+from scipy.io import wavfile
 
 fs, x = wavfile.read("clean.wav")
 fs, y = wavfile.read("distorted.wav")
